@@ -1,0 +1,93 @@
+%!PS-Adobe-3.1
+%%Creator: Magnus Wissler (gmw@wittyname.net)
+%%Title: genkou-youshi-a4.ps
+%%Pages: 1
+%%Orientation: Landscape
+%%DocumentMedia: a4 842 595 80 () ()
+%%EndComments
+%%BeginSetup
+    << /PageSize [595 842] /Orientation 3 >> setpagedevice
+%%EndSetup
+%%Page: 1 1
+%%BeginPageSetup
+% Landscape orientation 
+90 rotate 0 -595 translate
+%%EndPageSetup
+
+/mm { 0.352778 mul } def
+/paperheight 595 def
+/paperwidth 842 def
+/spacing 12 def
+/margin 36 def
+
+/GenkouYoushi {
+    /numcolumns exch def 
+    /colwidth paperwidth margin 2 mul sub numcolumns div def % width of a column
+    /numrows paperheight margin 2 mul sub colwidth div truncate cvi def % Round down and convert to integer
+    numcolumns { %repeat
+        numrows colwidth Column
+        currentpoint pop colwidth add margin moveto
+    } repeat
+} def
+
+% Draw a column of cells.
+% Parameters:
+% numrows colsize
+/Column {
+    exch
+    { %repeat
+        dup Cell
+        dup 0 exch rmoveto
+    } repeat
+    0 paperheight margin sub neg rmoveto
+} def
+
+% Parameters: size
+/Cell {
+    /size exch def
+    size Square
+    gsave 
+        0.5 setlinewidth
+        [0.25 2] 0.25 setdash
+        gsave
+            size 2 div 0 rmoveto
+            0 size rlineto
+            stroke
+        grestore
+        gsave
+            0 size 2 div rmoveto
+            size 0 rlineto
+            stroke
+        grestore
+    grestore
+} def
+
+/Square {
+    /size exch def
+    gsave
+        2 setlinewidth
+        size 0 rlineto
+        0 size rlineto
+        size neg 0 rlineto
+        0 size neg rlineto
+        closepath
+        stroke
+    grestore
+} def
+
+%%EndProlog
+
+% 0 72 Column stroke
+% 80 152 Column stroke
+% 300 300 moveto
+% 72 Cell stroke
+% 72 Square stroke
+1 setlinecap
+1 setlinejoin
+margin margin moveto
+% 0 0 moveto
+12 GenkouYoushi stroke
+
+
+% 72 Cell
+showpage
