@@ -1,0 +1,21 @@
+%!PS-Adobe-3.1
+%%Creator: Magnus Wissler (gmw@wittyname.net)
+
+/paperheight 595 def
+/paperwidth 842 def
+
+% Draw a pentagon.
+% Parameters: radius
+/pentagon {
+    paperwidth 2 div paperwidth 2 div moveto
+    dup 0 exch rmoveto
+
+    5 {
+        72 rotate
+        dup 0 rlineto
+    } repeat
+    
+} def
+
+100 pentagon closepath stroke
+showpage
