@@ -22,7 +22,7 @@
         dup 360 exch div rotate % rotate CTM 
         exch dup 0 rlineto 
         exch
-    } repeat
+    } repeat 
 } def
 
 % Draw a better polygon. Use CTM to scale polygon.
@@ -41,18 +41,20 @@
 paperwidth 2 div paperwidth 2 div moveto
 
 gsave
-72 72 scale
-1 36 div setlinewidth
-3 polygon
-1 1 translate
-4 polygon
+[0.1 0.03] 0 setdash
+144 144 scale
+1 144 div setlinewidth
+
+%3 polygon
+%1 1 translate
+%4 polygon
 1 1 translate
 5 polygon
-1 1 translate
-6 polygon
-1 1 translate 
-7 polygon
-1 1 translate 
-8 polygon
+%1 1 translate
+%6 polygon
+%1 1 translate 
+%7 polygon
+%1 1 translate 
+%8 polygon
 grestore
 showpage
