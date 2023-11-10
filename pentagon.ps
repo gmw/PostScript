@@ -7,15 +7,52 @@
 % Draw a pentagon.
 % Parameters: radius
 /pentagon {
-    paperwidth 2 div paperwidth 2 div moveto
     dup 0 exch rmoveto
-
-    5 {
-        72 rotate
+    5 { %repeat
+        72.0 rotate
         dup 0 rlineto
     } repeat
-    
 } def
 
-100 pentagon closepath stroke
+% Draw a polygon.
+% Parameters: numsides radius
+/polygon0 {
+    dup 0 exch rmoveto
+    exch dup { %repeat
+        dup 360 exch div rotate % rotate CTM 
+        exch dup 0 rlineto 
+        exch
+    } repeat
+} def
+
+% Draw a better polygon. Use CTM to scale polygon.
+% Parameters: numsides
+/polygon 
+  { newpath
+      0 0 moveto
+      dup { %repeat
+        1 0 rlineto
+        dup 360 exch div rotate dup
+      } repeat
+   closepath
+   stroke
+} def
+
+paperwidth 2 div paperwidth 2 div moveto
+
+gsave
+72 72 scale
+1 36 div setlinewidth
+3 polygon
+1 1 translate
+4 polygon
+1 1 translate
+5 polygon
+1 1 translate
+6 polygon
+1 1 translate 
+7 polygon
+1 1 translate 
+8 polygon
+grestore
 showpage
