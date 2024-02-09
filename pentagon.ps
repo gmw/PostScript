@@ -4,28 +4,7 @@
 /paperheight 595 def
 /paperwidth 842 def
 
-% Draw a pentagon.
-% Parameters: radius
-/pentagon {
-    dup 0 exch rmoveto
-    5 { %repeat
-        72.0 rotate
-        dup 0 rlineto
-    } repeat
-} def
-
-% Draw a polygon.
-% Parameters: numsides radius
-/polygon0 {
-    dup 0 exch rmoveto
-    exch dup { %repeat
-        dup 360 exch div rotate % rotate CTM 
-        exch dup 0 rlineto 
-        exch
-    } repeat 
-} def
-
-% Draw a better polygon. Use CTM to scale polygon.
+% Draw a better regular polygon. Use CTM to scale/translate/rotate polygon instead.
 % Parameters: numsides
 /polygon 
   { newpath
@@ -38,23 +17,18 @@
    stroke
 } def
 
+% TODO: Draw equal-circumference regular polygons
+% TODO: Draw equal-area regular polygons
+
 paperwidth 2 div paperwidth 2 div moveto
 
 gsave
 [0.1 0.03] 0 setdash
+0.5 0.5 moveto
 144 144 scale
 1 144 div setlinewidth
 
-%3 polygon
-%1 1 translate
-%4 polygon
-1 1 translate
+1 0.5 translate
 5 polygon
-%1 1 translate
-%6 polygon
-%1 1 translate 
-%7 polygon
-%1 1 translate 
-%8 polygon
 grestore
 showpage
